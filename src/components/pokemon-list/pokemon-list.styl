@@ -1,0 +1,16 @@
+.pokemon-list-component
+  .list
+    display flex
+    flex-wrap wrap
+    justify-content start
+
+.pokemon-list-component_card
+  width 100%
+  margin-bottom 20px;
+  +above(530px)
+    width calc(((100% / 12) * 6) - 20px)
+    margin 10px
+  +above(992px)
+    width calc(((100% / 12) * 4) - 20px)
+  +above(1200px)
+    width calc(((100% / 12) * 3) - 20px)
