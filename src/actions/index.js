@@ -27,8 +27,8 @@ function errorFetchPokemons(message) {
 export function fetchPokemons(page = 0) {
   return dispatch => {
     dispatch(requestFetchPokemons());
-    
-    axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${page * 10}`)
+
+    axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=6&offset=${page * 10}`)
     .then(response => {
       Promise.all(
         response.data.results.map(pokemon =>

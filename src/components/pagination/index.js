@@ -18,8 +18,24 @@ class Pagination extends Component {
 		this.setState({ currentPage: page })
 	}
 
-  render() {
+  renderPaginationLinks() {
     const { currentPage } = this.state;
+    return [1, 2, 3, 4].map((el, index) =>
+      <li
+        key={`${el}-${index}`}
+        className="page-item">
+        <a
+          className="page-link"
+          href="#"
+          disabled={currentPage === index}
+          onClick={event => this.goToPage(index)}>
+          {el}
+        </a>
+      </li>
+    );
+  }
+
+  render() {
     const { isFetching } = this.props;
 
     return (
@@ -28,24 +44,7 @@ class Pagination extends Component {
         disabled={isFetching}>
         <nav>
           <ul className="pagination">
-            <li className="page-item">
-              <a
-                className="page-link"
-                href="#"
-                disabled={currentPage === 0}
-                onClick={event => this.goToPage(0)}>
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a
-                className="page-link"
-                href="#"
-                disabled={currentPage === 1}
-                onClick={event => this.goToPage(1)}>
-              2
-              </a>
-            </li>
+            {this.renderPaginationLinks()}
           </ul>
         </nav>
       </div>
