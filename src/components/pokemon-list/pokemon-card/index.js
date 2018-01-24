@@ -25,10 +25,10 @@ class PokemonCard extends Component {
         </div>
         <div className="pokemon-card-component_body">
           <h4 className="pokemon-card-component_name">{name} - <span className="pokemon-card-component_number">#{id}</span></h4>
-          <ul className="list pokemon-card-component_types">
+          <ul className="list pokemon_types">
             {
               types.map(type =>
-                <li className={`pokemon-card-component_type pokemon-card-component_type-${type.type.name}`} key={`${name}-${type.type.name}`}>{type.type.name}</li>
+                <li className={`pokemon_type pokemon_type-${type.type.name}`} key={`${name}-${type.type.name}`}>{type.type.name}</li>
               )
             }
           </ul>

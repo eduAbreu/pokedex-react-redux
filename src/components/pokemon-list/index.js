@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import PokemonCard from './pokemon-card';
 
@@ -21,7 +22,9 @@ class PokemonList extends Component {
         <li
           key={`${pokemon.name}-${index}`}
           className="pokemon-list-component_card">
-          <PokemonCard pokemon={pokemon} />
+          <Link to={`/pokemon/${pokemon.name}`}>
+            <PokemonCard pokemon={pokemon} />
+          </Link>
         </li>
       )
     )
