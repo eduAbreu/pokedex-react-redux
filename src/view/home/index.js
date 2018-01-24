@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PokemonList from '../../components/pokemon-list';
+import SearchBar from '../../components/search';
+import Pagination from '../../components/pagination';
 
 const Jumbotron = (props) => {
   const isLoading = props.loading ? 'loading' : '';
@@ -24,7 +26,9 @@ class HomePage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
+              <SearchBar />
               <PokemonList/>
+              <Pagination />
             </div>
           </div>
         </div>

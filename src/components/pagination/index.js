@@ -2,25 +2,61 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
-// import './pagia.styl';
+import './pagination.styl';
 
 class Pagination extends Component {
-
-    render() {
-        return (
-          <div className="pagination-component">
-            <nav>
-              <ul className="pagination">
-                <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                <li className="page-item"><a className="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-          </div>
-        );
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: 0,
+      numPages: 2
     }
+  }
+
+  goToPage(page) {
+    this.props.fetchPokemons(page);
+		this.setState({ currentPage: page })
+	}
+
+  render() {
+    const { currentPage } = this.state;
+    const { isFetching } = this.props;
+
+    return (
+      <div
+        className="pagination-component"
+        disabled={isFetching}>
+        <nav>
+          <ul className="pagination">
+            <li className="page-item">
+              <a
+                className="page-link"
+                href="#"
+                disabled={currentPage === 0}
+                onClick={event => this.goToPage(0)}>
+                1
+              </a>
+            </li>
+            <li className="page-item">
+              <a
+                className="page-link"
+                href="#"
+                disabled={currentPage === 1}
+                onClick={event => this.goToPage(1)}>
+              2
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    );
+  }
 }
 
-export default connect(null, actions)(Pagination);
+function mapStateToProps(state) {
+  return {
+    isFetching: state.pokemons.isFetching
+  };
+}
+
+export default connect(mapStateToProps, actions)(Pagination);

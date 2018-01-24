@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PokemonCard from './pokemon-card';
-import SearchBar from '../search';
-import Pagination from '../pagination';
 
 import * as actions from '../../actions';
 import './pokemon-list.styl';
@@ -42,7 +40,6 @@ class PokemonList extends Component {
 
     return (
       <div className="pokemon-list-component">
-        <SearchBar />
         <ul className="list">
           {
             typeof searchResult === 'string' ?
@@ -54,7 +51,6 @@ class PokemonList extends Component {
               )
           }
         </ul>
-        <Pagination />
       </div>
     );
   }

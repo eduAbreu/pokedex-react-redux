@@ -31,7 +31,6 @@ export default function(state = {
       let searchResult = state.pokemons.filter(p => p.name.includes(searchValue));
       if (searchValue.length > 0 && searchResult.length === 0)
         searchResult = 'Not found!';
-      console.log(searchResult);
       return Object.assign({}, state, {
         searchedPokemons: searchResult
       });

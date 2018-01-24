@@ -11,10 +11,10 @@ class PokemonCard extends Component {
     const {
       name,
       sprites,
-      order,
+      id,
       types
     } = this.props.pokemon;
-    
+
     return (
       <div className="pokemon-card-component">
         <div className="pokemon-card-component_header">
@@ -24,7 +24,7 @@ class PokemonCard extends Component {
             className="pokemon-card-component_image" />
         </div>
         <div className="pokemon-card-component_body">
-          <h4 className="pokemon-card-component_name">{name} - <span className="pokemon-card-component_number">#{order}</span></h4>
+          <h4 className="pokemon-card-component_name">{name} - <span className="pokemon-card-component_number">#{id}</span></h4>
           <ul className="list pokemon-card-component_types">
             {
               types.map(type =>

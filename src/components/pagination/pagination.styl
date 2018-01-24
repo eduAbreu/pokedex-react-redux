@@ -1,0 +1,19 @@
+.pagination-component
+  nav
+    text-align center
+
+  .page-link
+    color #282828
+    transition all 300ms ease 0s
+    &:hover
+      background-color #f8f8f8
+    &[disabled]
+      background-color #e3350d
+      color #fff
+      pointer-events none
+
+  &[disabled]
+    .page-link
+      pointer-events none
+      background-color #eee
+      color #282828
