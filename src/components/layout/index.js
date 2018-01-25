@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { Jumbotron } from '../jumbotron';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
     return (
       <div>

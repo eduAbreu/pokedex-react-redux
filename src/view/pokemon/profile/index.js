@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -8,10 +9,9 @@ class PokemonProfile extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   componentDidMount() {
-    const {id} = this.props.params;
-    this.props.fetchPokemon(id);
+    this.props.fetchPokemon(this.props.params.id);
   }
 
   renderEvolutions() {
@@ -25,7 +25,7 @@ class PokemonProfile extends Component {
       }
     }
 
-    if (evolutions.length > 0) {
+    if (evolutions.length > 1) {
       return (
         <div className="pokemon-profile-evolutions">
           <h4>Evolutions</h4>
@@ -65,7 +65,6 @@ class PokemonProfile extends Component {
       types
     } = this.props.pokemon;
     const image = sprites ? sprites.front_default : '';
-
     if (this.props.isFetching) {
       return (<div></div>)
     }
@@ -84,13 +83,15 @@ class PokemonProfile extends Component {
                   <p>{`Weight: ${weight} / Height: ${height}`}</p>
                   <ul className="list pokemon_types">
                     {
-                      types.map(type =>
+                      typeof types !== 'undefined' ? types.map(type =>
                         <li className={`pokemon_type pokemon_type-${type.type.name}`} key={`${name}-${type.type.name}`}>{type.type.name}</li>
-                      )
+                      ) : null
                     }
                   </ul>
                 </div>
-                {this.renderEvolutions()}
+                {
+                  !_.isEmpty(this.props.evolution) ? this.renderEvolutions() : null
+                }
               </div>
             </div>
           </div>
@@ -105,7 +106,7 @@ function mapStateToProps(state) {
   return {
     isFetching: state.pokemons.isFetching,
     pokemon: state.pokemons.pokemon,
-    evolution: state.pokemons.evolution,
+    evolution: state.pokemons.evolution
   };
 }
 
