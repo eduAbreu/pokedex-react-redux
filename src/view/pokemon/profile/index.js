@@ -10,7 +10,7 @@ class PokemonProfile extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchPokemon(this.props.params.id);
   }
 
