@@ -30,10 +30,9 @@ export function fetchPokemons(page = 0) {
 
     axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=6&offset=${page * 10}`)
     .then(response => {
+      const getAllPokemon = response.data.results.map(pokemon => getPokemon(pokemon.url));
       Promise.all(
-        response.data.results.map(pokemon =>
-          new Promise(res => res(getPokemon(pokemon.url)))
-        )
+        response.data.results.map(pokemon => getPokemon(pokemon.url))
       ).then(pokemons => dispatch(receiveFetchPokemons(pokemons)))
       .catch(error => dispatch(errorFetchPokemons(error.message)));
     }).catch(error =>
